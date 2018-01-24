@@ -50,6 +50,7 @@ public class ConvertVideo {
         FFmpeg ffmpeg = new FFmpeg("ffmpeg");
         FFprobe ffprobe = new FFprobe("ffprobe");
 
+
         FFmpegExecutor executor = new FFmpegExecutor(ffmpeg, ffprobe);
 
         final FFmpegProbeResult in = ffprobe.probe(inputFile);
@@ -57,6 +58,9 @@ public class ConvertVideo {
         FFmpegBuilder builder = new FFmpegBuilder()
                 .setInput(in) // Or filename
                 .addOutput(outputFile)
+                //Different output option can be configured Here.
+                //.setAudioBitRate()
+                //.setFormat()
                 .done();
 
         FFmpegJob job = executor.createJob(builder, new ProgressListener() {
